@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Countries App</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <h1>Hola mundo</h1>
-    <button id="gameBtn">Get countries</button>
-    <img src="" alt="" id="firstCountry" width="200" crossorigin="anonymous">
-    <img src="" alt="" id="secondCountry" width="200" crossorigin="anonymous">
+  <body class="relative">
+    <button id="gameBtn" class="absolute z-10 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 font-bold">Get countries</button>
+    <div id="game" class="gameDisplay h-screen w-screen flex flex-col justify-center items-center md:flex-row md:justify-evenly">
+      <h2 class="text-white absolute z-10 w-screen">Current score</h2>
+      <div class="w-auto h-1/2 md:h-auto flex justify-evenly items-center">
+        <img src="" alt="" id="firstCountry" crossorigin="anonymous" class="w-80 h-64">
+      </div>
+      <div class="w-auto h-1/2 md:h-auto flex justify-center items-center">
+        <img src="" alt="" id="secondCountry" crossorigin="anonymous" class="w-80 h-64">
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
