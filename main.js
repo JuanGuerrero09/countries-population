@@ -3,9 +3,39 @@ const firstCountry = document.getElementById("firstCountry");
 const secondCountry = document.getElementById("secondCountry");
 
 
-gameButton.addEventListener('click', changeCountryTwo)
+const startGame = () => {
+  let currentScore = 0
+  let maxScore = 0
+  let gameOver = false
 
-async function getCountries() {
+  const countryOne = []
+  const countryTwo = []
+
+  const choseQuestion = () => {
+    let randomValue = Math.round(Math.random())
+    if (randomValue === 0){
+      return 'area'
+    }
+    if (randomValue === 1){
+      return 'population'
+    }
+  }
+
+  const playRound = (choosedValue, secondValue) => {
+    //Country one has x y
+    if (choosedValue > secondValue) {
+
+    }
+  }
+
+  const changeCountryTwo = () => {
+
+  }
+  
+}
+
+
+async function fetchCountries() {
   const countriesPopulation = [];
   const response = await fetch("https://restcountries.com/v3.1/all");
   const responseData = await response.json();
@@ -13,6 +43,8 @@ async function getCountries() {
     const country = {
       name: el.name.common,
       population: el.population,
+      area: el.area,
+      flag: el.flags['svg'],
       alpha3Code: el.cca3,
     };
     countriesPopulation.push(country);
@@ -20,45 +52,30 @@ async function getCountries() {
   return countriesPopulation;
 }
 
-async function getFlags(codeOne, codeTwo) {
-  const responseOne = await fetch(`https://countryflagsapi.com/svg/${codeOne}`);
-  const responseTwo = await fetch(`https://countryflagsapi.com/svg/${codeTwo}`);
-  firstCountry.src = `${responseOne.url}`;
-  secondCountry.src = `${responseTwo.url}`;
-}
 
-const countries = await getCountries();
-const numberOfCountries = countries.length - 1;
 
-function getARandomCountry() {
+async function getARandomCountry() {
+  const countries = await fetchCountries();
+  const numberOfCountries = countries.length - 1;
   const randomNumber = Math.ceil(Math.random() * numberOfCountries);
-  return randomNumber;
+  return countries[randomNumber];
 }
 
 async function changeCountryTwo() {
-  const {
-    name: countryTwo,
-    population: populationTwo,
-    alpha3Code: countryCodeTwo,
-  } = countries[getARandomCountry()];
-  const responseTwo = await fetch(`https://countryflagsapi.com/svg/${countryCodeTwo}`);
-  console.log(`${countryOne}, ${countryCodeOne} has ${populationOne} habitants
-while ${countryTwo}, ${countryCodeTwo} has ${populationTwo} habitants`);
-  secondCountry.src = `${responseTwo.url}`;
+  const newCountry = await getARandomCountry()
+  console.log(newCountry);
+  console.log(`${firstCountryObject.name}, has ${firstCountryObject.population} habitants
+while ${newCountry.name} has ${newCountry.population} habitants`);
+  firstCountry.src = `${firstCountryObject.flag}`;
+  secondCountry.src = `${newCountry.flag}`;
 }
 
-const {
-  name: countryOne,
-  population: populationOne,
-  alpha3Code: countryCodeOne,
-} = countries[getARandomCountry()];
-const {
-  name: countryTwo,
-  population: populationTwo,
-  alpha3Code: countryCodeTwo,
-} = countries[getARandomCountry()];
+const firstCountryObject = await getARandomCountry();
 
-console.log(`${countryOne}, ${countryCodeOne} has ${populationOne} habitants
-while ${countryTwo}, ${countryCodeTwo} has ${populationTwo} habitants`);
+const secondCountryObject = await getARandomCountry();
 
-getFlags(countryCodeOne, countryCodeTwo);
+console.log(`${firstCountryObject.name}, has ${firstCountryObject.population} habitants
+while ${secondCountryObject.name} has ${secondCountryObject.population} habitants`)
+
+
+gameButton.addEventListener('click', changeCountryTwo)
