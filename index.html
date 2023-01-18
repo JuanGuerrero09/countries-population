@@ -2,23 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/public/world-svgrepo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
     <title>Countries App</title>
   </head>
   <body class="relative bg-zinc-200">
     <button id="gameBtn" class="absolute z-10 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 font-bold">Get countries</button>
-    <div id="game" class="gameDisplay h-screen w-screen flex flex-col justify-center items-center md:flex-row md:justify-evenly">
+    <div id="game" class="gameDisplay h-screen w-screen flex flex-col justify-start items-center md:flex-row md:justify-evenly mt-1">
       <h2 class="absolute z-10 w-screen bottom-1 text-blue-700 font-bold text-2xl">Current score</h2>
-      <div class="w-auto h-2/5 md:h-96 flex justify-evenly items-center border-8 border-rose-600">
-        <img src="" alt="" id="firstCountry" crossorigin="anonymous" class="w-64 h-auto">
+      <div class="w-auto relative h-2/5 md:h-2/3 flex flex-col justify-center items-center  rounded overflow-hidden shadow-lg">
+        <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex md:flex-col gap-2 justify-center w-full mb-3">
+          <h1 id="countryOneName"></h1>
+          <p>has</p>
+        </div>
+        <img src="" alt="" id="firstCountryImg" crossorigin="anonymous" class="w-64 h-auto md:w-80 md:h-48 ">
+        <div class="md:absolute font-bold bottom-4 text-center text-2xl flex flex-col justify-center w-full mb-3">
+          <h1 id="countryOneQuantity"></h1>
+          <h2 class="questionText">Habitants</h2>
+        </div>
       </div>
-      <div class="w-auto h-3/5 h- md:h-96 flex justify-center items-center relative border-8 border-rose-600 py-10">
-        <img src="" alt="" id="secondCountry" crossorigin="anonymous" class="w-64 h-auto">
-        <div class="absolute bottom-3 md:-bottom-0 ">
+      <div class="w-auto relative h-1/2 md:h-2/3 flex flex-col justify-start md:justify-center items-center  rounded overflow-hidden shadow-lg mt-1">
+        <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex md:flex-col gap-2 justify-center w-full mb-3">
+          <h1 id="countryTwoName"></h1>
+          <h2>has</h2>
+        </div>
+        <img src="" alt="" id="secondCountryImg" crossorigin="anonymous" class="w-64 h-auto md:w-80 md:h-48 ">
+        <div class="absolute bottom-3 md:bottom-14 ">
           <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">More</button>
           <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">Less</button>
+        </div>
+        <div class="md:absolute font-bold bottom-2 text-center text-2xl flex flex-col justify-center w-full mb-3">
+          <h2 class="questionText">Habitants</h2>
         </div>
       </div>
     </div>
