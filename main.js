@@ -3,13 +3,34 @@ const firstCountry = document.getElementById("firstCountry");
 const secondCountry = document.getElementById("secondCountry");
 
 
-const startGame = () => {
+const createGame = () => {
   let currentScore = 0
   let maxScore = 0
   let gameOver = false
 
-  const countryOne = []
-  const countryTwo = []
+  let countryOne = []
+  let countryTwo = []
+  let countryThree = []
+
+  const startGame = async () => {
+    countryOne = await getARandomCountry()
+    countryTwo = await getARandomCountry()
+    countryThree = await getARandomCountry()
+    console.log(countryOne, countryTwo);
+    showFlags()
+  }
+
+  const showFlags = () => {
+    firstCountry.src = `${countryOne.flag}`;
+    secondCountry.src = `${countryTwo.flag}`
+  }
+
+  const changeFlags = async () => {
+    countryOne = countryTwo
+    countryTwo = countryThree
+    showFlags()
+    countryThree = await getARandomCountry()
+  }
 
   const choseQuestion = () => {
     let randomValue = Math.round(Math.random())
@@ -31,8 +52,18 @@ const startGame = () => {
   const changeCountryTwo = () => {
 
   }
+
+  return {
+    startGame,
+    changeFlags
+  }
   
 }
+
+
+const game = createGame()
+
+document.addEventListener('DOMContentLoaded', game.startGame)
 
 
 async function fetchCountries() {
@@ -78,4 +109,4 @@ console.log(`${firstCountryObject.name}, has ${firstCountryObject.population} ha
 while ${secondCountryObject.name} has ${secondCountryObject.population} habitants`)
 
 
-gameButton.addEventListener('click', changeCountryTwo)
+gameButton.addEventListener('click', game.changeFlags)
