@@ -1,12 +1,17 @@
 const gameButton = document.getElementById("gameBtn");
-const firstCountry = document.getElementById("firstCountry");
-const secondCountry = document.getElementById("secondCountry");
+const firstCountryImg = document.getElementById("firstCountryImg");
+const secondCountryImg = document.getElementById("secondCountryImg");
+const countryOneName = document.getElementById('countryOneName')
+const countryTwoName = document.getElementById('countryTwoName')
+const countryOneQuantity = document.getElementById('countryOneQuantity')
+const questionText = document.querySelectorAll('.questionText')
 
 
 const createGame = () => {
   let currentScore = 0
   let maxScore = 0
   let gameOver = false
+  let currentQuestionText = 'population'
 
   let countryOne = []
   let countryTwo = []
@@ -17,29 +22,39 @@ const createGame = () => {
     countryTwo = await getARandomCountry()
     countryThree = await getARandomCountry()
     console.log(countryOne, countryTwo);
-    showFlags()
+    showCountries()
+    console.log(currentQuestionText);
   }
 
-  const showFlags = () => {
-    firstCountry.src = `${countryOne.flag}`;
-    secondCountry.src = `${countryTwo.flag}`
+  const showCountries = () => {
+    firstCountryImg.src = `${countryOne.flag}`;
+    secondCountryImg.src = `${countryTwo.flag}`
+    countryOneName.innerText = countryOne.name
+    countryTwoName.innerText = countryTwo.name
+    choseQuestion()
   }
 
   const changeFlags = async () => {
     countryOne = countryTwo
     countryTwo = countryThree
-    showFlags()
+    showCountries()
     countryThree = await getARandomCountry()
   }
 
   const choseQuestion = () => {
-    let randomValue = Math.round(Math.random())
-    if (randomValue === 0){
-      return 'area'
+    const possibleQuestionTexts = ['area', 'population']
+    let questionTextIndex = Math.round(Math.random() * (possibleQuestionTexts.length - 1))
+    currentQuestionText = possibleQuestionTexts[questionTextIndex]
+
+    if (currentQuestionText == 'population'){
+      countryOneQuantity.innerText = countryOne.population
+      questionText.forEach(text => text.innerText = 'habitants') 
     }
-    if (randomValue === 1){
-      return 'population'
+    if (currentQuestionText == 'area'){
+      countryOneQuantity.innerText = `${countryOne.area} m2`
+      questionText.forEach(text => text.innerText = 'area') 
     }
+    console.log(currentQuestionText);
   }
 
   const playRound = (choosedValue, secondValue) => {
@@ -92,21 +107,7 @@ async function getARandomCountry() {
   return countries[randomNumber];
 }
 
-async function changeCountryTwo() {
-  const newCountry = await getARandomCountry()
-  console.log(newCountry);
-  console.log(`${firstCountryObject.name}, has ${firstCountryObject.population} habitants
-while ${newCountry.name} has ${newCountry.population} habitants`);
-  firstCountry.src = `${firstCountryObject.flag}`;
-  secondCountry.src = `${newCountry.flag}`;
-}
 
-const firstCountryObject = await getARandomCountry();
-
-const secondCountryObject = await getARandomCountry();
-
-console.log(`${firstCountryObject.name}, has ${firstCountryObject.population} habitants
-while ${secondCountryObject.name} has ${secondCountryObject.population} habitants`)
 
 
 gameButton.addEventListener('click', game.changeFlags)
