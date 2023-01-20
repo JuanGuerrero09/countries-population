@@ -3,8 +3,13 @@ const firstCountryImg = document.getElementById("firstCountryImg");
 const secondCountryImg = document.getElementById("secondCountryImg");
 const countryOneName = document.getElementById('countryOneName')
 const countryTwoName = document.getElementById('countryTwoName')
-const countryOneQuantity = document.getElementById('countryOneQuantity')
+const countryOneValue = document.getElementById('countryOneValue')
 const questionText = document.querySelectorAll('.questionText')
+const moreBtn = document.getElementById('moreBtn')
+const lessBtn = document.getElementById('lessBtn')
+const currentScoreText = document.getElementById('currentScoreText')
+const currentScoreValue = document.getElementById('currentScoreValue')
+const currentScoreContainer = document.getElementById('currentScoreContainer')
 
 
 const createGame = () => {
@@ -17,13 +22,14 @@ const createGame = () => {
   let countryTwo = []
   let countryThree = []
 
-  const startGame = async () => {
+  let countryOneQuantity
+  let countryTwoQuantity
+
+  const getCountries = async () => {
     countryOne = await getARandomCountry()
     countryTwo = await getARandomCountry()
     countryThree = await getARandomCountry()
-    console.log(countryOne, countryTwo);
     showCountries()
-    console.log(currentQuestionText);
   }
 
   const showCountries = () => {
@@ -47,30 +53,59 @@ const createGame = () => {
     currentQuestionText = possibleQuestionTexts[questionTextIndex]
 
     if (currentQuestionText == 'population'){
-      countryOneQuantity.innerText = countryOne.population
+      countryOneValue.innerText = countryOne.population
       questionText.forEach(text => text.innerText = 'habitants') 
     }
     if (currentQuestionText == 'area'){
-      countryOneQuantity.innerText = `${countryOne.area} m2`
-      questionText.forEach(text => text.innerText = 'area') 
+      countryOneValue.innerText = `${countryOne.area} m2`
+      questionText.forEach(text => text.innerText = 'territory') 
     }
-    console.log(currentQuestionText);
   }
 
-  const playRound = (choosedValue, secondValue) => {
+  const playRound = (e) => {
     //Country one has x y
-    if (choosedValue > secondValue) {
+    const answer = e.target.innerText
+    let isCorrect
 
+    if(currentQuestionText == 'population'){
+      countryOneQuantity = countryOne.population
+      countryTwoQuantity = countryTwo.population
     }
+    if(currentQuestionText == 'area'){
+      countryOneQuantity = countryOne.area
+      countryTwoQuantity = countryTwo.area
+    }
+    if(answer == 'More'){
+      isCorrect = countryTwoQuantity > countryOneQuantity
+    }
+    if(answer == 'Less'){
+      isCorrect = countryTwoQuantity < countryOneQuantity
+    }
+    
+    if (isCorrect){
+      changeFlags()
+      changeScore()
+    }
+    if (!isCorrect){
+      gameOver = true
+      currentScoreText.innerText = 'Game Over, Final Score: '
+      currentScoreContainer.style.color = 'red'
+    }
+    // if (selectedOption > secondValue) {
+
+    // }
   }
 
-  const changeCountryTwo = () => {
-
+  const changeScore = () => {
+    currentScore++
+    currentScoreValue.innerText = currentScore
   }
+
 
   return {
-    startGame,
-    changeFlags
+    getCountries,
+    changeFlags,
+    playRound
   }
   
 }
@@ -78,7 +113,9 @@ const createGame = () => {
 
 const game = createGame()
 
-document.addEventListener('DOMContentLoaded', game.startGame)
+document.addEventListener('DOMContentLoaded', game.getCountries)
+moreBtn.addEventListener('click', game.playRound)
+lessBtn.addEventListener('click', game.playRound)
 
 
 async function fetchCountries() {
