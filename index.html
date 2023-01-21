@@ -8,11 +8,17 @@
     <title>Countries App</title>
   </head>
   <body class="relative bg-zinc-200">
-    <button id="gameBtn" class="absolute z-10 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 font-bold">Get countries</button>
-    <div id="game" class="gameDisplay h-screen w-screen flex flex-col justify-start items-center md:flex-row md:justify-evenly mt-1">
-      <div id="currentScoreContainer" class="absolute z-10 w-screen bottom-10 text-blue-700 font-bold text-2xl flex">
-        <h2 id="currentScoreText">Current score: </h2>
-        <span id="currentScoreValue" class="ml-1">0</span>
+    <button id="gameBtn" class="absolute z-10 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 font-bold"><a href="#my-modal-2" class="btn">Get Countries</a></button>
+    <div id="game" class="gameDisplay relative h-[calc(100vh-0.25rem)] w-screen flex flex-col justify-start items-center md:flex-row md:justify-evenly mt-1 text-gray-900">
+      <div id="scoreContainers" class="absolute w-screen bottom-0 flex justify-between ">
+        <div id="currentScoreContainer" class=" text-blue-700 font-bold text-2xl flex">
+          <h2 id="currentScoreText">Current score: </h2>
+          <span id="currentScoreValue" class="ml-1">0</span>
+        </div>
+        <div id="maxScoreContainer" class=" text-red-600 font-bold text-2xl flex pr-1">
+          <h2 id="maxScoreText">Max score: </h2>
+          <span id="maxScoreValue" class="ml-1">0</span>
+        </div>
       </div>
       <div class="w-auto relative h-2/5 md:h-2/3 flex flex-col justify-center items-center  rounded overflow-hidden shadow-lg">
         <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex md:flex-col gap-2 justify-center w-full mb-3">
@@ -41,5 +47,14 @@
       </div>
     </div>
     <script type="module" src="/main.js"></script>
+    <div class="modal" id="my-modal-2">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+        <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+        <div class="modal-action">
+         <a href="#" class="btn">Yay!</a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

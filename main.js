@@ -1,3 +1,5 @@
+import numberSeparator from "number-separator";
+
 const gameButton = document.getElementById("gameBtn");
 const firstCountryImg = document.getElementById("firstCountryImg");
 const secondCountryImg = document.getElementById("secondCountryImg");
@@ -53,11 +55,11 @@ const createGame = () => {
     currentQuestionText = possibleQuestionTexts[questionTextIndex]
 
     if (currentQuestionText == 'population'){
-      countryOneValue.innerText = countryOne.population
+      countryOneValue.innerText = numberSeparator(countryOne.population)
       questionText.forEach(text => text.innerText = 'habitants') 
     }
     if (currentQuestionText == 'area'){
-      countryOneValue.innerText = `${countryOne.area} m2`
+      countryOneValue.innerText = `${countryOne.area} km2`
       questionText.forEach(text => text.innerText = 'territory') 
     }
   }
