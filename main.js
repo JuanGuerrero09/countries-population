@@ -1,6 +1,6 @@
 import numberSeparator from "number-separator";
 
-const gameButton = document.getElementById("gameBtn");
+const restartBtn = document.getElementById("restartBtn");
 const firstCountryImg = document.getElementById("firstCountryImg");
 const secondCountryImg = document.getElementById("secondCountryImg");
 const countryOneName = document.getElementById('countryOneName')
@@ -11,7 +11,13 @@ const moreBtn = document.getElementById('moreBtn')
 const lessBtn = document.getElementById('lessBtn')
 const currentScoreText = document.getElementById('currentScoreText')
 const currentScoreValue = document.getElementById('currentScoreValue')
+const maxScoreValue = document.getElementById('maxScoreValue')
 const currentScoreContainer = document.getElementById('currentScoreContainer')
+
+
+const changeVisibilityRestartBtn = () => {
+  restartBtn.style.display = (restartBtn.style.display == 'none')?'block':'none'
+}
 
 
 const createGame = () => {
@@ -28,6 +34,8 @@ const createGame = () => {
   let countryTwoQuantity
 
   const getCountries = async () => {
+    moreBtn.addEventListener('click', game.playRound)
+    lessBtn.addEventListener('click', game.playRound)
     countryOne = await getARandomCountry()
     countryTwo = await getARandomCountry()
     countryThree = await getARandomCountry()
@@ -90,8 +98,12 @@ const createGame = () => {
     }
     if (!isCorrect){
       gameOver = true
+      maxScore = currentScore>maxScore? currentScore: maxScore
+      moreBtn.addEventListener('click', game.playRound)
+      lessBtn.removeEventListener('click', game.playRound)
       currentScoreText.innerText = 'Game Over, Final Score: '
       currentScoreContainer.style.color = 'red'
+      changeVisibilityRestartBtn()
     }
     // if (selectedOption > secondValue) {
 
@@ -103,9 +115,19 @@ const createGame = () => {
     currentScoreValue.innerText = currentScore
   }
 
+  const restartGame = () => {
+    maxScoreValue.innerText = maxScore
+    currentScore = 0
+    currentScoreText.innerText = 'Current score: '
+    currentScoreContainer.style.color = 'blue'
+    getCountries()
+    changeVisibilityRestartBtn()
+  }
+
 
   return {
     getCountries,
+    restartGame,
     changeFlags,
     playRound
   }
@@ -149,4 +171,4 @@ async function getARandomCountry() {
 
 
 
-gameButton.addEventListener('click', game.changeFlags)
+restartBtn.addEventListener('click', game.restartGame)
