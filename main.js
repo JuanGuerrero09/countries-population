@@ -86,10 +86,10 @@ const createGame = () => {
       countryTwoQuantity = countryTwo.area
     }
     if(answer == 'More'){
-      isCorrect = countryTwoQuantity > countryOneQuantity
+      isCorrect = countryTwoQuantity >= countryOneQuantity
     }
     if(answer == 'Less'){
-      isCorrect = countryTwoQuantity < countryOneQuantity
+      isCorrect = countryTwoQuantity <= countryOneQuantity
     }
     
     if (isCorrect){
@@ -118,6 +118,7 @@ const createGame = () => {
   const restartGame = () => {
     maxScoreValue.innerText = maxScore
     currentScore = 0
+    currentScoreValue.innerText = currentScore
     currentScoreText.innerText = 'Current score: '
     currentScoreContainer.style.color = 'blue'
     getCountries()
