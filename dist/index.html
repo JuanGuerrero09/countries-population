@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>Countries App</title>
-    <script type="module" crossorigin src="/assets/index-7b917d2f.js"></script>
-    <link rel="stylesheet" href="/assets/index-a326d805.css">
+    <script type="module" crossorigin src="/assets/index-88429e0f.js"></script>
+    <link rel="stylesheet" href="/assets/index-2fda43ac.css">
   </head>
   <body class="relative bg-zinc-200">
     <div class="restartContainer absolute z-10  bottom-0 w-screen flex justify-center">
@@ -15,38 +15,38 @@
     </div>
     <div id="game" class="gameDisplay relative h-[calc(100vh-0.25rem)] w-screen flex flex-col justify-start items-center md:flex-row md:justify-evenly mt-1 text-gray-900">
       <div id="scoreContainers" class="absolute w-screen bottom-0 flex justify-between ">
-        <div id="currentScoreContainer" class="ml-4 text-blue-700 font-bold text-2xl flex">
+        <div id="currentScoreContainer" class="ml-4 text-blue-700 font-bold text-xl md:text-2xl flex">
           <h2 id="currentScoreText">Current score: </h2>
           <span id="currentScoreValue" class="ml-1">0</span>
         </div>
-        <div id="maxScoreContainer" class="mr-4 text-red-600 font-bold text-2xl flex pr-1">
+        <div id="maxScoreContainer" class="mr-4 text-red-600 font-bold text-xl md:text-2xl flex pr-1">
           <h2 id="maxScoreText">Max score: </h2>
           <span id="maxScoreValue" class="ml-1">0</span>
         </div>
       </div>
-      <div class="titleContainer absolute z-10  top-4 w-screen flex justify-center">
-        <h1 class="text-6xl font-bold text-slate-800">Who has more?</h1>
+      <div class="titleContainer md:absolute z-10  top-6 w-screen flex justify-center">
+        <h1 class="text-3xl lg:text-6xl font-bold text-slate-800">Which country has more?</h1>
       </div>
-      <div class="w-auto relative h-2/5 md:h-2/3 flex flex-col justify-center items-center  rounded overflow-hidden shadow-lg">
-        <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex md:flex-col gap-2 justify-center w-full mb-3">
+      <div class="w-64 md:w-auto relative h-2/5 mt-4 md:h-2/3 flex flex-col justify-center items-center  rounded overflow-hidden shadow-lg">
+        <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex flex-col md:gap-2 justify-center w-full mb-3">
           <h1 id="countryOneName"></h1>
           <p class="text-base">has</p>
         </div>
-        <img src="" alt="" id="firstCountryImg" crossorigin="anonymous" class="w-64 h-auto md:w-80 md:h-48 ">
+        <img src="" alt="" id="firstCountryImg" crossorigin="anonymous" class="w-auto md:w-64 h-32 lg:w-80 md:h-48 ">
         <div class="md:absolute font-bold bottom-4 text-center text-2xl flex flex-col justify-center w-full mb-3">
           <h1 class="text-blue-600" id="countryOneValue"></h1>
           <h2 class="questionText">Habitants</h2>
         </div>
       </div>
-      <div class="w-auto relative h-1/2 md:h-2/3 flex flex-col justify-start md:justify-center items-center  rounded overflow-hidden shadow-lg mt-1">
-        <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex md:flex-col gap-2 justify-center w-full mb-3">
+      <div class="w-64 md:w-auto relative h-auto mt-2 md:h-2/3 flex flex-col justify-start md:justify-center items-center  rounded overflow-hidden shadow-lg ">
+        <div class="md:absolute font-bold top-4 md:top-6 text-center text-2xl flex flex-col md:gap-2 justify-center w-full mb-3">
           <h1 id="countryTwoName"></h1>
           <p class="text-base">has</p>
         </div>
-        <img src="" alt="" id="secondCountryImg" crossorigin="anonymous" class="w-64 h-auto md:w-80 md:h-48 ">
-        <div class="absolute bottom-3 md:bottom-14 ">
-          <button id="moreBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">More</button>
-          <button id="lessBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">Less</button>
+        <img src="" alt="" id="secondCountryImg" crossorigin="anonymous" class="w-auto md:w-64 h-32 lg:w-80 md:h-48 ">
+        <div class="mt-2 md:absolute bottom-3 md:bottom-14 ">
+          <button id="moreBtn" class="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">More</button>
+          <button id="lessBtn" class="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-r">Less</button>
         </div>
         <div class="md:absolute font-bold bottom-2 text-center text-2xl flex flex-col justify-center w-full mb-3">
           <h2 class="questionText">Habitants</h2>
