@@ -1,7 +1,7 @@
-# Who has more? (Countries edition)
+# Which country has more?
 Hi! this is a game based in the popular [Higher or Lower](http://www.higherlowergame.com) for geography fans (like me).
 
-Live Preview: [Who has more? (Countries edition)](https://countries-population-juanguerrero09.vercel.app)
+Live Preview: [Which country has more?](https://countries-population-juanguerrero09.vercel.app)
 
 ## How it works?
 This game consists of choosing whether one country has more or less pupulation or territory than the other.
