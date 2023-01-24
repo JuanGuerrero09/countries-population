@@ -36,10 +36,13 @@ const createGame = () => {
   const getCountries = async () => {
     moreBtn.addEventListener('click', game.playRound)
     lessBtn.addEventListener('click', game.playRound)
+    const start = Date.now();
     countryOne = await getARandomCountry()
     countryTwo = await getARandomCountry()
     countryThree = await getARandomCountry()
     showCountries()
+    const end = Date.now();
+    console.log(`Execution time: ${end - start} ms`);
   }
 
   const showCountries = () => {
@@ -73,7 +76,6 @@ const createGame = () => {
   }
 
   const playRound = (e) => {
-    //Country one has x y
     const answer = e.target.innerText
     let isCorrect
 
@@ -105,9 +107,6 @@ const createGame = () => {
       currentScoreContainer.style.color = 'red'
       changeVisibilityRestartBtn()
     }
-    // if (selectedOption > secondValue) {
-
-    // }
   }
 
   const changeScore = () => {
