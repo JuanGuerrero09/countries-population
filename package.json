@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "daisyui": "^2.47.0",
+    "firebase": "^9.17.1",
     "number-separator": "^2.0.0"
   }
 }

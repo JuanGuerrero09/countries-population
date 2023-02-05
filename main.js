@@ -1,4 +1,21 @@
 import numberSeparator from "number-separator";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBB09h45wFutyzssyMzHwdLdhUo1ZSpAVQ",
+  authDomain: "countries-game-fcc4f.firebaseapp.com",
+  projectId: "countries-game-fcc4f",
+  storageBucket: "countries-game-fcc4f.appspot.com",
+  messagingSenderId: "448314381112",
+  appId: "1:448314381112:web:c2175b7aa2c404c20667cd"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 const restartBtn = document.getElementById("restartBtn");
 const firstCountryImg = document.getElementById("firstCountryImg");
@@ -172,3 +189,7 @@ async function getARandomCountry() {
 
 
 restartBtn.addEventListener('click', game.restartGame)
+
+const firebaseAppConfig = getFirebaseConfig();
+initializeApp(firebaseAppConfig);
+//step seven
