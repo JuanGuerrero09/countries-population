@@ -1,5 +1,7 @@
 import numberSeparator from "number-separator";
 
+let counter = 0
+
 const restartBtn = document.getElementById("restartBtn");
 const firstCountryImg = document.getElementById("firstCountryImg");
 const secondCountryImg = document.getElementById("secondCountryImg");
